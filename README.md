@@ -2,8 +2,8 @@
  
 Fitur:
 
-* Buat layar untuk menampilkan daftar genre resmi untuk film.
-* Buat layar untuk menampilkan daftar film menemukan berdasarkan genre.
+* Menampilkan daftar genre resmi untuk film.
+* Menampilkan daftar film menemukan berdasarkan genre.
 * Tampilkan informasi utama tentang film ketika pengguna mengklik salah satu film.
 * Tampilkan ulasan pengguna untuk sebuah film.
 * Tampilkan trailer YouTube dari film.
