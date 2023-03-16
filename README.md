@@ -16,16 +16,21 @@ Fitur:
 Link API https://www.themoviedb.org/
 
 
-####Screenshot
+Screenshot
 
-####Splash
-![screenshot/img1.jpg]
+Splash
 
-####Genre List
-![screenshot/img2.jpg]
+![Screenshot](https://github.com/ekohendratno/TheMovies/tree/main/screenshot/img1.jpg)
 
-####Movie List By Genre
-![screenshot/img3.jpg]
+Genre List
 
-####Movie Detail with Review List
-![screenshot/img4.jpg]
+![Screenshot](https://github.com/ekohendratno/TheMovies/tree/main/screenshot/img2.jpg)
+
+Movie List By Genre
+
+![Screenshot](https://github.com/ekohendratno/TheMovies/tree/main/screenshot/img3.jpg)
+
+Movie Detail with Review List
+
+![Screenshot](https://github.com/ekohendratno/TheMovies/tree/main/screenshot/img4.jpg)
+
