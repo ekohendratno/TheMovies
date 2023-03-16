@@ -20,17 +20,17 @@ Screenshot
 
 Splash
 
-![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/tree/main/screenshot/img1.jpg)
+![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img1.jpg)
 
 Genre List
 
-![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/tree/main/screenshot/img2.jpg)
+![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img2.jpg)
 
 Movie List By Genre
 
-![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/tree/main/screenshot/img3.jpg)
+![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img3.jpg)
 
 Movie Detail with Review List
 
-![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/tree/main/screenshot/img4.jpg)
+![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img4.jpg)
 
