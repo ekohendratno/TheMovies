@@ -38,19 +38,29 @@ class MainActivity : AppCompatActivity(), GenreAdapter.GenreAdapterClickListener
         val client = TMDbClient()
         client.getGenreList(page = 1,
             onSuccess = { genreList ->
-                runOnUiThread {
-                    adapter = GenreAdapter(genreList)
-                    recyclerView.adapter = adapter
-
-
-                    adapter.listener = this
+                if( genreList.isNullOrEmpty()) {
+                    println("Empty")
 
                     hideLoading()
+                }else{
+
+                    runOnUiThread {
+                        adapter = GenreAdapter(genreList)
+                        recyclerView.adapter = adapter
+
+
+                        adapter.listener = this
+
+                        hideLoading()
+
+                    }
 
                 }
             },
             onError = { error ->
                 println("Error: $error")
+
+                hideLoading()
             }
         )
 

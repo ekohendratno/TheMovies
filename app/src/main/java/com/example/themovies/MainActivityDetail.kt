@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.themovies.adapters.GenreAdapter
@@ -31,14 +32,16 @@ class MainActivityDetail : AppCompatActivity(), TrailerAdapter.TrailerAdapterCli
     private lateinit var recyclerView3: RecyclerView
     private lateinit var adapterTrailer: TrailerAdapter
     private lateinit var adapterReview: ReviewAdapter
+    private lateinit var empty_template: TextView
+
+    private var isLoading = false
+    private var pageReview = 1
 
     private fun showLoading() {
-        moviedetail.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
     }
 
     private fun hideLoading() {
-        moviedetail.visibility = View.VISIBLE
         progressBar.visibility = View.GONE
     }
 
@@ -65,6 +68,7 @@ class MainActivityDetail : AppCompatActivity(), TrailerAdapter.TrailerAdapterCli
         })
 
 
+        empty_template = findViewById(R.id.empty_template)
         review = findViewById(R.id.review)
         moviedetail = findViewById(R.id.moviedetail)
         progressBar = findViewById(R.id.progressBar)
@@ -81,7 +85,9 @@ class MainActivityDetail : AppCompatActivity(), TrailerAdapter.TrailerAdapterCli
         val client = TMDbClient()
         client.getMoviesDetail( movieId = movieId,
             onSuccess = { movie ->
-                
+
+                moviedetail.visibility = View. GONE
+
                 runOnUiThread {
                     val posterImageView = findViewById<ImageView>(R.id.poster)
                     val taglineTextView = findViewById<TextView>(R.id.tagline)
@@ -103,12 +109,16 @@ class MainActivityDetail : AppCompatActivity(), TrailerAdapter.TrailerAdapterCli
                         Picasso.get().load(imageUrl).into(posterImageView)
                     }
 
+                    moviedetail.visibility = View. VISIBLE
                     hideLoading()
 
                 }
+
+
             },
             onError = { error ->
                 println("Error: $error")
+                hideLoading()
             }
         )
 
@@ -143,6 +153,8 @@ class MainActivityDetail : AppCompatActivity(), TrailerAdapter.TrailerAdapterCli
             }
         )
 
+
+
         //Untuk Review
         recyclerView3.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
         recyclerView3.adapter = adapterTrailer
@@ -159,10 +171,59 @@ class MainActivityDetail : AppCompatActivity(), TrailerAdapter.TrailerAdapterCli
             },
             onError = { error ->
                 println("Error: $error")
+
+                hideLoading()
             }
         )
 
+        recyclerView3.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
 
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if (!isLoading && (visibleItemCount + firstVisibleItemPosition) >= totalItemCount) {
+                    loadMoreDataReview()
+                }
+            }
+        })
+
+
+    }
+
+
+    private fun loadMoreDataReview() {
+        isLoading = true
+        pageReview++
+
+        showLoading()
+
+        val client = TMDbClient()
+        client.getMoviesReviewList(page = pageReview, movieId = movieId,
+            onSuccess = { movieList ->
+
+                runOnUiThread {
+                    val currentList = movieList.toMutableList()
+
+                    currentList.addAll(movieList)
+                    adapterReview.addMovies(currentList)
+
+                    isLoading = false
+
+                    hideLoading()
+                }
+
+            },
+            onError = { error ->
+                println("Error: $error")
+                isLoading = false
+
+                hideLoading()
+            }
+        )
     }
 
     override fun onItemClicked(view: View, trailer: Trailer) {

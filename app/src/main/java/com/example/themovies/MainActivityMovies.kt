@@ -77,19 +77,29 @@ class MainActivityMovies : AppCompatActivity(), MovieAdapter.MovieAdapterClickLi
         val client = TMDbClient()
         client.getMoviesList(page = 1, genreId = genreId,
             onSuccess = { movieList ->
-                runOnUiThread {
-                    adapter = MovieAdapter(movieList.toMutableList())
-                    recyclerView.adapter = adapter
-
-
-                    adapter.listener = this
-
+                if(movieList.isNullOrEmpty()){
+                    println("Empty")
                     hideLoading()
+
+                }else{
+
+                    runOnUiThread {
+                        adapter = MovieAdapter(movieList.toMutableList())
+                        recyclerView.adapter = adapter
+
+
+                        adapter.listener = this
+
+                        hideLoading()
+
+                    }
 
                 }
             },
             onError = { error ->
                 println("Error: $error")
+
+                hideLoading()
             }
         )
 

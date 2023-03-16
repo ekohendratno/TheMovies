@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,6 +24,7 @@ class MainActivityReview : AppCompatActivity() {
     private lateinit var movieTitle: String
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapterReview: ReviewAdapter
+
     private var reviewList = mutableListOf<Review>()
     private var isLoading = false
     private var page = 1
@@ -85,17 +87,24 @@ class MainActivityReview : AppCompatActivity() {
         val client = TMDbClient()
         client.getMoviesReviewList(page = 1, movieId,
             onSuccess = { reviewList ->
-                runOnUiThread {
-                    adapterReview = ReviewAdapter(reviewList.toMutableList())
-                    recyclerView.adapter = adapterReview
-
-
+                if(reviewList.isNullOrEmpty()){
+                    println("Empty")
                     hideLoading()
 
+                }else{
+                    runOnUiThread {
+                        adapterReview = ReviewAdapter(reviewList.toMutableList())
+                        recyclerView.adapter = adapterReview
+
+
+                        hideLoading()
+
+                    }
                 }
             },
             onError = { error ->
                 println("Error: $error")
+                hideLoading()
             }
         )
 
@@ -119,6 +128,7 @@ class MainActivityReview : AppCompatActivity() {
     private fun loadMoreData() {
         isLoading = true
         page++
+        showLoading()
 
         val client = TMDbClient()
         client.getMoviesReviewList(page = page, movieId,
@@ -130,11 +140,13 @@ class MainActivityReview : AppCompatActivity() {
                     adapterReview.addMovies(currentList)
 
                     isLoading = false
+                    hideLoading()
                 }
             },
             onError = { error ->
                 println("Error: $error")
                 isLoading = false
+                hideLoading()
             }
         )
     }

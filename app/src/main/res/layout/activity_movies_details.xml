@@ -50,12 +50,26 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/empty_template"
+                android:text="Tidak ada data!"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:paddingTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/moviedetail"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -95,13 +109,13 @@
 
 
                             <ImageView
-                                android:visibility="invisible"
                                 android:id="@+id/activity_detail_trailer_play_image"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
                                 android:layout_centerInParent="true"
                                 android:alpha="0.5"
                                 android:src="@drawable/ic_play_arrow_grey_24dp"
+                                android:visibility="invisible"
                                 app:tint="@android:color/black" />
 
                         </RelativeLayout>
