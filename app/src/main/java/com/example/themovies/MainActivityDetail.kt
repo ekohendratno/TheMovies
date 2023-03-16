@@ -81,6 +81,7 @@ class MainActivityDetail : AppCompatActivity(), TrailerAdapter.TrailerAdapterCli
         val client = TMDbClient()
         client.getMoviesDetail( movieId = movieId,
             onSuccess = { movie ->
+                
                 runOnUiThread {
                     val posterImageView = findViewById<ImageView>(R.id.poster)
                     val taglineTextView = findViewById<TextView>(R.id.tagline)
