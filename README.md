@@ -65,19 +65,8 @@ https://api.themoviedb.org/3/movie/$movieId/reviews?api_key=$API_KEY&page=$page&
 
 Screenshot
 
-Splash
-
-![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img1.jpg)
-
-Genre List
-
-![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img2.jpg)
-
-Movie List By Genre
-
-![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img3.jpg)
-
-Movie Detail with Review List
-
-![Screenshot](https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img4.jpg)
+<img src="https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img1.jpg" width="23%"></img> 
+<img src="https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img2.jpg" width="23%"></img> 
+<img src="https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img3.jpg" width="23%"></img> 
+<img src="https://raw.githubusercontent.com/ekohendratno/TheMovies/main/screenshot/img4.jpg" width="23%"></img> 
 
